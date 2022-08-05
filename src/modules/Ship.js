@@ -3,7 +3,6 @@ const Ship = function (id, coords) {
     id,
     coords,
     hit: [],
-    sunk: false,
     processHit: function (coord) {
       this.hit.push(coord);
     },

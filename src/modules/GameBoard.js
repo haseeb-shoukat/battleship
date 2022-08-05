@@ -26,13 +26,12 @@ const GameBoard = function () {
     },
 
     allSunk: function () {
-      this.ships.forEach((ship) => {
-        if (ship.sunk === false) {
+      return this.ships.every((ship) => {
+        if (ship.isSunk() === false) {
           return false;
         }
+        return true;
       });
-
-      return true;
     },
   };
 };

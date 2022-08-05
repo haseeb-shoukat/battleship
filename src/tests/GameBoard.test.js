@@ -41,3 +41,23 @@ test("Add coordinates to missed if no ship in place", () => {
   expect(gameBoard.missed.length).not.toBe(0);
 });
 
+test("Report if all ships sunk", () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip([
+    [0, 1],
+  ]);
+
+  gameBoard.receiveAttack(0, 1);
+  expect(gameBoard.allSunk()).toBe(true);
+});
+
+test("Report if all ships not sunk", () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip([
+    [0, 1],
+    [0, 2],
+  ]);
+
+  expect(gameBoard.allSunk()).toBe(false);
+});
+
