@@ -1,7 +1,7 @@
 import { Ship } from "../modules/Ship";
 
 test("Adds coordinates to hit", () => {
-  const ship = Ship([
+  const ship = Ship(0, [
     [0, 1],
     [0, 2],
     [0, 3],
@@ -19,14 +19,14 @@ test("Adds coordinates to hit", () => {
 });
 
 test("Reports if ship is sunk", () => {
-  const ship = Ship([[0, 1]]);
+  const ship = Ship(0, [[0, 1]]);
 
   ship.processHit([0, 1]);
   expect(ship.isSunk()).toBe(true);
 });
 
 test("Reports if ship is NOT sunk", () => {
-  const ship = Ship([[0, 1], [0, 2]]);
+  const ship = Ship(0, [[0, 1], [0, 2]]);
 
   ship.processHit([0, 1]);
   expect(ship.isSunk()).toBe(false);
