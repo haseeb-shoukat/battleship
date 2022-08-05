@@ -1,15 +1,13 @@
-const Ship = function (coords, length) {
+const Ship = function (coords) {
   return {
     coords,
-    length,
     hit: [],
     sunk: false,
     processHit: function (coord) {
-      if (this.hit.includes(coord)) return;
-      else this.hit.push(coord);
+      this.hit.push(coord);
     },
     isSunk: function () {
-      this.hit.length === this.length ? true : false;
+      return (this.hit.length === this.coords.length) ? true : false;
     },
   };
 };
