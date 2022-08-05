@@ -6,16 +6,10 @@ test("Adds coordinates to hit", () => {
     [0, 2],
     [0, 3],
   ]);
-  let value = false;
 
   ship.processHit([0, 1]);
-  ship.hit.forEach((arr) => {
-    if (arr[0] === 0 && arr[1] === 1) {
-      value = true;
-      return;
-    }
-  });
-  expect(value).toBe(true);
+  ship.isHit(0, 1);
+  expect(ship.isHit(0, 1)).toBe(true);
 });
 
 test("Reports if ship is sunk", () => {
