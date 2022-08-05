@@ -36,12 +36,20 @@ test("Do not mark as hit if already hit", () => {
     [0, 1],
     [0, 2],
   ]);
-  gameBoard.receiveAttack(0, 1)
+  gameBoard.receiveAttack(0, 1);
   let confirmHit = gameBoard.receiveAttack(0, 1);
 
   expect(confirmHit).toBe("Already hit");
 });
 
-test.todo("Add to coordinates to missed if no ship in place");
+test("Add to coordinates to missed if no ship in place", () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip([
+    [0, 1],
+    [0, 2],
+  ]);
 
-test.todo("Do not add to miss if space already in missed");
+  gameBoard.receiveAttack(0, 3);
+  expect(gameBoard.missed.length).not.toBe(0);
+});
+
