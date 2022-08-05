@@ -1,7 +1,6 @@
 import { Ship } from "./Ship";
 
 const GameBoard = function () {
-
   return {
     ships: [],
     missed: [],
@@ -13,20 +12,22 @@ const GameBoard = function () {
 
     receiveAttack: function (x, y) {
       let hit = false;
-      this.ships.forEach((ship) => {
-        if (hit === true) return;
-        ship.coords.forEach((coord) => {
-          if ([x, y] === coord) {
-            ship.processHit();
+      this.ships.every((ship) => {
+        if (ship.contains([x, y], "coords")) {
+          if (ship.contains([x, y], "hit")) {
+            hit = "Already hit";
+          } else {
+            ship.processHit([x, y]);
             hit = true;
-            return;
           }
-        });
+
+          return false;
+        }
+        return true;
       });
 
-      if (hit === false) {
-        this.missed.push([x, y]);
-      }
+      if (hit === false) this.missed.push([x, y]);
+      return hit;
     },
 
     allSunk: function () {
@@ -41,4 +42,4 @@ const GameBoard = function () {
   };
 };
 
-export { GameBoard }
+export { GameBoard };
