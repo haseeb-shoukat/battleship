@@ -30,7 +30,7 @@ test("Mark a ship coordinates as hit", () => {
   expect(confirmHit).toBe(true);
 });
 
-test("Add to coordinates to missed if no ship in place", () => {
+test("Add coordinates to missed if no ship in place", () => {
   const gameBoard = GameBoard();
   gameBoard.placeShip([
     [0, 1],
