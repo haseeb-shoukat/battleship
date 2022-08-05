@@ -14,13 +14,8 @@ const GameBoard = function () {
       let hit = false;
       this.ships.every((ship) => {
         if (ship.contains([x, y], "coords")) {
-          if (ship.contains([x, y], "hit")) {
-            hit = "Already hit";
-          } else {
-            ship.processHit([x, y]);
-            hit = true;
-          }
-
+          ship.processHit([x, y]);
+          hit = true;
           return false;
         }
         return true;
