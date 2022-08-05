@@ -1,5 +1,6 @@
-const Ship = function (coords) {
+const Ship = function (id, coords) {
   return {
+    id,
     coords,
     hit: [],
     sunk: false,

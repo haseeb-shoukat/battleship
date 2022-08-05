@@ -1,12 +1,14 @@
 import { Ship } from "./Ship";
 
 const GameBoard = function () {
+
   return {
     ships: [],
     missed: [],
+    takenCoords: [],
 
-    placeShip: function (coords, length) {
-      this.ships.push(Ship(coords, length));
+    placeShip: function (coords) {
+      this.ships.push(Ship(this.ships.length, coords));
     },
 
     receiveAttack: function (x, y) {
