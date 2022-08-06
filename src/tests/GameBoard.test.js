@@ -61,3 +61,45 @@ test("Report if all ships not sunk", () => {
   expect(gameBoard.allSunk()).toBe(false);
 });
 
+test("Report if a move is illegal: Already hit", () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip([
+    [0, 1],
+    [0, 2],
+  ]);
+
+  gameBoard.receiveAttack(0, 1);
+  expect(gameBoard.isIllegal(0, 1)).toBe(true);
+});
+
+test("Report if a move is illegal: Already missed", () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip([
+    [0, 1],
+    [0, 2],
+  ]);
+
+  gameBoard.receiveAttack(0, 3);
+  expect(gameBoard.isIllegal(0, 3)).toBe(true);
+});
+
+test("Report if a move is illegal: Out of bounds", () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip([
+    [0, 1],
+    [0, 2],
+  ]);
+
+  expect(gameBoard.isIllegal(0, 11)).toBe(true);
+});
+
+test("Report if a move is Legal", () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip([
+    [0, 1],
+    [0, 2],
+  ]);
+
+  expect(gameBoard.isIllegal(0, 1)).toBe(false);
+});
+

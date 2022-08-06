@@ -29,7 +29,7 @@ const GameBoard = function () {
       });
 
       if (hit === false) this.missed.push([x, y]);
-      updateLegal(x, y);
+      this.updateLegal(x, y);
       return hit;
     },
 
@@ -51,8 +51,8 @@ const GameBoard = function () {
     },
 
     isIllegal: function(x, y) {
-      return legalMoves.some(coord => {
-        return JSON.stringify(coord) === JSON.stringify([x, y]);
+      return this.legalMoves.every(coord => {
+        return JSON.stringify(coord) !== JSON.stringify([x, y]);
       })
     }
   };
