@@ -100,6 +100,6 @@ test("Report if a move is Legal", () => {
     [0, 2],
   ]);
 
-  expect(gameBoard.isIllegal(0, 1)).toBe(false);
+  expect(gameBoard.isIllegal(0, 9)).toBe(false);
 });
 

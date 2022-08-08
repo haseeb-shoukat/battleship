@@ -20,5 +20,5 @@ test("Attack enemy (Computer player)", () => {
     const enemy = new Player("comp");
     enemy.setEnemy(player);
     enemy.compAttack()
-    expect(player.myBoard.legalMoves.length).toBe(80)
+    expect(player.myBoard.legalMoves.length).toBe(99)
 })
