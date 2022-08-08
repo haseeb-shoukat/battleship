@@ -2,8 +2,8 @@ import { Ship } from "./Ship";
 
 const GameBoard = function () {
   let legalMoves = [];
-  for (let x = 0; x < 9; x++) {
-    for (let y = 0; y < 9; y++) {
+  for (let x = 0; x < 10; x++) {
+    for (let y = 0; y < 10; y++) {
       legalMoves.push([x, y]);
     }
   }
