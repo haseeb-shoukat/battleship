@@ -18,7 +18,7 @@ body {
 .main-title {
     margin-top: 40px;
     grid-area: 1/ 1/ span 1/ span 2;
-    font-size: 3.2rem;
+    font-size: 4rem;
     font-weight: 500;
     justify-self: center;
     align-content: flex-end;
@@ -28,16 +28,19 @@ body {
 .board {
     grid-row: 2/ span 1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 60px;
+}
+
+.board-one {
+    margin-left: auto;
 }
 
 .board-one, .board-two {
     background-color: #cbd5e1;
     box-sizing: content-box;
-    width: 450px;
-    height: 450px;
-    margin: 50px;
+    width: 400px;
+    height: 400px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -46,4 +49,19 @@ body {
 
 .board-item {
     border: 1px solid black;
+    cursor: pointer;
+}
+
+.board-one > .board-item {
+    cursor: default;
+}
+
+.missed {
+    background-color: #f43f5e;
+    cursor: default;
+}
+
+.hit {
+    background-color: #4ade80;
+    cursor: default;
 }
