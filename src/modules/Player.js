@@ -5,10 +5,15 @@ class Player {
     this.myBoard = GameBoard();
     this.enemy;
     this.id = id;
+    this.currentTurn = false;
   }
 
   setEnemy(player) {
     this.enemy = player;
+  }
+
+  setCurrent(turn) {
+    this.currentTurn = turn;
   }
 
   attack(x, y) {
@@ -24,7 +29,12 @@ class Player {
 
   receive(x, y) {
     if (this.myBoard.isIllegal(x, y)) return "Illegal Move";
-    return this.myBoard.receiveAttack(x, y);
+    let hit = this.myBoard.receiveAttack(x, y);
+    if (hit !== true) {
+      this.currentTurn = true;
+      this.enemy.setCurrent(false);
+    }
+    return 
   }
 }
 
