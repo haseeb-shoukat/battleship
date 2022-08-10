@@ -54,7 +54,7 @@ const GameBoard = function () {
 
       let arr = this.legalPlacements.filter((coord) => {
         return list.every(
-          (item) => JSON.stringify(coord) !== JSON.stringify([x, y])
+          (item) => JSON.stringify(coord) !== JSON.stringify(item)
         );
       });
 
