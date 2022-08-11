@@ -2,10 +2,12 @@
 
 * {
     font-family: "Ubuntu", sans-serif;
+    color: #1e293b;
 }
 
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0%;
 }
 
@@ -22,7 +24,6 @@ body {
     font-weight: 500;
     justify-self: center;
     align-content: flex-end;
-    color: #1e293b;
 }
 
 .board {
@@ -36,7 +37,7 @@ body {
     margin-left: auto;
 }
 
-.board-one, .board-two {
+.placing-board, .board-one, .board-two {
     background-color: #cbd5e1;
     box-sizing: content-box;
     width: 400px;
@@ -64,4 +65,57 @@ body {
 .hit {
     background-color: #4ade80;
     cursor: default;
+}
+
+.placing-board {
+    height: 20rem;
+    width: 20rem;
+
+}
+
+.hover {
+    background-color: aquamarine;
+}
+
+.overlay {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.621);
+}
+
+.card {
+    height: 35rem;
+    width: 30rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e8f0;
+}
+
+.card-heading {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.rotate-btn {
+    font-size: 1.4rem;
+    cursor: pointer;
+    background-color: #1e293b;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline-style: none;
+    padding: 5px 10px;
+}
+
+.rotate-btn:hover {
+    background-color: #334155;
 }
