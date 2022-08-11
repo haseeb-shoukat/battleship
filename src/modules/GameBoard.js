@@ -30,8 +30,8 @@ const GameBoard = function () {
 
     canPlaceShip: function (coords) {
       return coords.every((coord) => {
-        return legalMoves.some((legalMove) => {
-          return JSON.stringify(coord) === JSON.stringify(legalMove);
+        return this.legalPlacements.some((legalPlace) => {
+          return JSON.stringify(coord) === JSON.stringify(legalPlace);
         });
       });
     },
@@ -41,13 +41,19 @@ const GameBoard = function () {
       let [a, b] = info.coords[0];
       let [y, z] = info.coords[info.coords.length - 1];
 
-      if (info.axis === "x") {
+      if (info.axis === "y") {
         list.push([a - 1, b], [y + 1, z]);
+        list.forEach(([x, y]) => {
+          list.push([x, y - 1], [x, y + 1]);
+        });
         info.coords.forEach(([x, y]) => {
           list.push([x, y - 1], [x, y + 1]);
         });
       } else {
         list.push([a, b - 1], [y, z + 1]);
+        list.forEach(([x, y]) => {
+          list.push([x - 1, y], [x + 1, y]);
+        });
         info.coords.forEach(([x, y]) => {
           list.push([x - 1, y], [x + 1, y]);
         });
