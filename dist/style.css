@@ -18,7 +18,7 @@ body {
 .main-title {
     margin-top: 40px;
     grid-area: 1/ 1/ span 1/ span 2;
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 500;
     justify-self: center;
     align-content: flex-end;
