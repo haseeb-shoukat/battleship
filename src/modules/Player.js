@@ -20,6 +20,11 @@ class Player {
     return this.enemy.receive(x, y);
   }
 
+  compShips() {
+    if (this.id !== "comp") return;
+    this.myBoard.automaticShips();
+  }
+
   compAttack() {
     if (this.id !== "comp") return;
     let legalMoves = this.enemy.myBoard.legalMoves;

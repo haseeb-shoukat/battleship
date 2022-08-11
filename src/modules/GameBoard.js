@@ -23,12 +23,42 @@ const GameBoard = function () {
     legalPlacements,
     legalMoves,
 
+    automaticShips: function () {
+      this.types.forEach((type) => {
+        const axis = ["x", "y"][Math.floor(Math.random() * 2)];
+        let coords = [];
+        while (!this.canPlaceShip(coords)) {
+          coords = [];
+          let [x, y] =
+            this.legalPlacements[
+              Math.floor(Math.random() * this.legalPlacements.length)
+            ];
+          if (axis === "x") {
+            for (let i = y; i < y + type.len; i++) {
+              coords.push([x, i]);
+            }
+          } else {
+            for (let i = x; i < x + type.len; i++) {
+              coords.push([i, y]);
+            }
+          }
+        }
+        let info = {
+          coords,
+          axis,
+        };
+        this.ships.push(Ship(info));
+        this.updateLegalPlacements(info);
+      });
+    },
+
     placeShip: function (info) {
       this.ships.push(Ship(info));
       this.updateLegalPlacements(info);
     },
 
     canPlaceShip: function (coords) {
+      if (coords.length < 2) return false;
       return coords.every((coord) => {
         return this.legalPlacements.some((legalPlace) => {
           return JSON.stringify(coord) === JSON.stringify(legalPlace);
