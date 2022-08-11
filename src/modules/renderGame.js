@@ -15,38 +15,43 @@ const renderGame = (function () {
   }
 
   const renderPlacingBoard = function (p1) {
-    
-    const ship = { type: "Carrier", len: 5 };
-
     const boardItems = document.querySelectorAll(
       ".placing-board > .board-item"
     );
+    const rotateBtn = document.querySelector(".rotate-btn");
+    const cardText = document.querySelector(".card-text");
 
-    boardItems.forEach((item) => {
+    p1.myBoard.types.forEach((type) => {
       let axis = "y";
-      item.addEventListener("mouseover", (e) => {
-        const [x, y] = item.dataset.coord.split("").map(Number);
-        let coords = [];
-        if (axis === "x") {
-          for (let i = x; i < x + ship.len; i++) {
-            // document
-            //   .querySelector(`.placing-board > [data-coord="${[i, y].join("")}"]`)
-            //   .classList.add("hover");
-            coords.push([i, y]);
-          }
-        } else {
-          for (let i = y; i < y + ship.len; i++) {
-            // document
-            // //   .querySelector(`.placing-board > [data-coord="${[x, i].join("")}"]`)
-            // //   .classList.add("hover");
-            coords.push([x, i]);
-          }
-        }
+      cardText.textContent = `Place your ${type.type}`;
+      rotateBtn.addEventListener("click", (e) => {
+        axis === "y" ? (axis = "x") : (axis = "y");
       });
-      item.addEventListener("mouseout", (e) => {
-        document
-          .querySelectorAll(".hover")
-          .forEach((item) => item.classList.remove("hover"));
+      boardItems.forEach((item) => {
+        item.addEventListener("mouseover", (e) => {
+          const [x, y] = item.dataset.coord.split("").map(Number);
+          let coords = [];
+          if (axis === "x") {
+            for (let i = x; i < x + type.len; i++) {
+              // document
+              //   .querySelector(`.placing-board > [data-coord="${[i, y].join("")}"]`)
+              //   .classList.add("hover");
+              coords.push([i, y]);
+            }
+          } else {
+            for (let i = y; i < y + type.len; i++) {
+              // document
+              // //   .querySelector(`.placing-board > [data-coord="${[x, i].join("")}"]`)
+              // //   .classList.add("hover");
+              coords.push([x, i]);
+            }
+          }
+        });
+        item.addEventListener("mouseout", (e) => {
+          document
+            .querySelectorAll(".hover")
+            .forEach((item) => item.classList.remove("hover"));
+        });
       });
     });
   };
