@@ -11,6 +11,7 @@ test("Attack enemy", () => {
     const player = new Player();
     const enemy = new Player("comp");
     player.setEnemy(enemy);
+    enemy.setEnemy(player);
     player.attack(0, 1)
     expect(enemy.myBoard.isIllegal(0, 1)).toBe(true)
 })
@@ -18,6 +19,7 @@ test("Attack enemy", () => {
 test("Attack enemy (Computer player)", () => {
     const player = new Player();
     const enemy = new Player("comp");
+    player.setEnemy(enemy);
     enemy.setEnemy(player);
     enemy.compAttack()
     expect(player.myBoard.legalMoves.length).toBe(99)
