@@ -2,6 +2,7 @@ import { Ship } from "./Ship";
 
 const GameBoard = function () {
   let legalMoves = [];
+  let legalPlacements = [];
   for (let x = 0; x < 10; x++) {
     for (let y = 0; y < 10; y++) {
       legalMoves.push([x, y]);
@@ -24,7 +25,7 @@ const GameBoard = function () {
 
     placeShip: function (info) {
       this.ships.push(Ship(info));
-      updateLegalPlacements(info);
+      this.updateLegalPlacements(info);
     },
 
     canPlaceShip: function (coords) {
@@ -36,19 +37,19 @@ const GameBoard = function () {
     },
 
     updateLegalPlacements: function (info) {
-      let list = info.coords;
+      let list = JSON.parse(JSON.stringify(info.coords));
       let [a, b] = info.coords[0];
       let [y, z] = info.coords[info.coords.length - 1];
 
       if (info.axis === "x") {
-        list.append([a - 1, b], [y + 1, z]);
-        coords.forEach(([x, y]) => {
-          list.append([x, y - 1], [x, y + 1]);
+        list.push([a - 1, b], [y + 1, z]);
+        info.coords.forEach(([x, y]) => {
+          list.push([x, y - 1], [x, y + 1]);
         });
       } else {
-        list.append([a, b - 1], [y, z + 1]);
-        coords.forEach(([x, y]) => {
-          list.append([x - 1, y], [x + 1, y]);
+        list.push([a, b - 1], [y, z + 1]);
+        info.coords.forEach(([x, y]) => {
+          list.push([x - 1, y], [x + 1, y]);
         });
       }
 
@@ -79,10 +80,7 @@ const GameBoard = function () {
 
     allSunk: function () {
       return this.ships.every((ship) => {
-        if (ship.isSunk() === false) {
-          return false;
-        }
-        return true;
+        return ship.isSunk();
       });
     },
 
