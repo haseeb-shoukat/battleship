@@ -1,44 +1,49 @@
 import { runGame } from "./runGame";
 
 const renderGame = (function () {
-  let html = `<div class="main-title">Battleship</div>
-  <div class="board">
-      <div class="board-one"></div>
-  </div>
-  <div class="board">
-      <div class="board-two"></div>
-  </div>
-  <div class="overlay">
-      <div class="card">
-          <div class="card-heading">Welcome to Battleship!</div>
-          <div class="card-text"></div>
-          <button class="rotate-btn">Rotate</button>
-          <div class="placing-board"></div>
-      </div>
-  </div>`;
+  const initialize = function () {
+    let html = `<div class="main-title">Battleship</div>
+    <div class="board">
+        <div class="board-one"></div>
+    </div>
+    <div class="board">
+        <div class="board-two"></div>
+    </div>
+    <div class="overlay">
+        <div class="card">
+            <div class="card-heading">Welcome to Battleship!</div>
+            <div class="card-text"></div>
+            <button class="rotate-btn">Rotate</button>
+            <div class="placing-board"></div>
+        </div>
+    </div>`;
 
-  document.body.innerHTML = html;
+    document.body.innerHTML = html;
+    initializeVariables();
 
-  const boardOne = document.querySelector(".board-one");
-  const boardTwo = document.querySelector(".board-two");
-  const placingBoard = document.querySelector(".placing-board");
-  const rotateBtn = document.querySelector(".rotate-btn");
-  let freshCoords = [];
+    rotateBtn.addEventListener("click", (e) => {
+      axis === "y" ? (axis = "x") : (axis = "y");
+    });
 
-  let axis = "x";
-  rotateBtn.addEventListener("click", (e) => {
-    axis === "y" ? (axis = "x") : (axis = "y");
-  });
-
-  for (let x = 0; x < 10; x++) {
-    for (let y = 0; y < 10; y++) {
-      const item = document.createElement("div");
-      item.classList.add("board-item");
-      item.dataset.coord = [y, x].join("");
-      boardOne.appendChild(item);
-      boardTwo.appendChild(item.cloneNode());
+    for (let x = 0; x < 10; x++) {
+      for (let y = 0; y < 10; y++) {
+        const item = document.createElement("div");
+        item.classList.add("board-item");
+        item.dataset.coord = [y, x].join("");
+        boardOne.appendChild(item);
+        boardTwo.appendChild(item.cloneNode());
+      }
     }
-  }
+  };
+
+  const initializeVariables = function () {
+    window.boardOne = document.querySelector(".board-one");
+    window.boardTwo = document.querySelector(".board-two");
+    window.placingBoard = document.querySelector(".placing-board");
+    window.rotateBtn = document.querySelector(".rotate-btn");
+    window.freshCoords = [];
+    window.axis = "x";
+  };
 
   const loadPlacingBoard = function (p1) {
     placingBoard.innerHTML = "";
@@ -69,6 +74,7 @@ const renderGame = (function () {
   };
 
   const renderPlacingBoard = function (p1) {
+    initialize();
     placeShip(p1, 0);
   };
 
@@ -190,6 +196,12 @@ const renderGame = (function () {
         </div>
     </div>`;
     document.body.appendChild(overlay);
+    document.querySelector(".restart-btn").addEventListener("click", restart);
+  };
+
+  const restart = function () {
+    document.body.innerHTML = "";
+    runGame.initialize();
   };
 
   return {
