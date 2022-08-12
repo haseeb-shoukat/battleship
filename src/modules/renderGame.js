@@ -1,6 +1,24 @@
 import { runGame } from "./runGame";
 
 const renderGame = (function () {
+  let html = `<div class="main-title">Battleship</div>
+  <div class="board">
+      <div class="board-one"></div>
+  </div>
+  <div class="board">
+      <div class="board-two"></div>
+  </div>
+  <div class="overlay">
+      <div class="card">
+          <div class="card-heading">Welcome to Battleship!</div>
+          <div class="card-text"></div>
+          <button class="rotate-btn">Rotate</button>
+          <div class="placing-board"></div>
+      </div>
+  </div>`;
+
+  document.body.innerHTML = html;
+
   const boardOne = document.querySelector(".board-one");
   const boardTwo = document.querySelector(".board-two");
   const placingBoard = document.querySelector(".placing-board");
@@ -161,9 +179,23 @@ const renderGame = (function () {
     });
   };
 
+  const endGame = function (winner) {
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    overlay.innerHTML = `
+    <div class="overlay">
+        <div class="end-card">
+            <div class="card-heading">${winner}</div>
+            <button class="restart-btn">Play Again</button>
+        </div>
+    </div>`;
+    document.body.appendChild(overlay);
+  };
+
   return {
     render,
     renderPlacingBoard,
+    endGame,
   };
 })();
 
