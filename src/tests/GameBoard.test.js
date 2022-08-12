@@ -227,8 +227,8 @@ test("Ship cannot be placed outside board boundary", () => {
       [-1, 6],
     ]) ||
       gameBoard.canPlaceShip([
-        [1, 10],
-        [1, 10],
+        [1, 8],
+        [1, 9],
         [1, 10],
       ])
   ).toBe(false);
