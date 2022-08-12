@@ -3,9 +3,11 @@ import { runGame } from "./runGame";
 const renderGame = (function () {
   const initialize = function () {
     let html = `<div class="main-title">Battleship</div>
+    <div class="secondary-title">Your Board</div>
     <div class="board">
         <div class="board-one"></div>
     </div>
+    <div class="secondary-title">Enemy Board</div>
     <div class="board">
         <div class="board-two"></div>
     </div>
