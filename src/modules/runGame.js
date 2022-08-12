@@ -9,7 +9,12 @@ const runGame = (function () {
     player.setEnemy(computer);
     computer.setEnemy(player);
     player.setCurrent(true);
-    gameLoop();
+    placeShips();
+  };
+
+  const placeShips = function () {
+    computer.compShips();
+    renderGame.renderPlacingBoard(player);
   };
 
   const gameLoop = function () {
@@ -41,6 +46,7 @@ const runGame = (function () {
 
   return {
     initialize,
+    gameLoop,
   };
 })();
 
