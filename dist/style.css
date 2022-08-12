@@ -125,10 +125,11 @@ body {
 }
 
 .ship {
-    background-color: #334155;
+    background-color: #334155 !important;
+    cursor: default;
 }
 
-.cant-place {
+.invalid-placement, .invalid-hover {
     background-color: #f87171;
     cursor: default;
 }
