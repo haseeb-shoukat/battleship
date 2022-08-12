@@ -27,7 +27,7 @@ const renderGame = (function () {
     for (let x = 0; x < 10; x++) {
       for (let y = 0; y < 10; y++) {
         const item = document.createElement("div");
-        item.classList.add("board-item", "cant-place");
+        item.classList.add("board-item", "invalid-placement");
         item.dataset.coord = [y, x].join("");
         placingBoard.appendChild(item);
       }
@@ -36,7 +36,7 @@ const renderGame = (function () {
       const item = document.querySelector(
         `.placing-board > [data-coord="${x}${y}"`
       );
-      item.classList.remove("cant-place");
+      item.classList.remove("invalid-placement");
     });
 
     p1.myBoard.ships.forEach((ship) => {
@@ -44,7 +44,7 @@ const renderGame = (function () {
         const item = document.querySelector(
           `.placing-board > [data-coord="${x}${y}"`
         );
-        item.classList.remove("cant-place");
+        item.classList.remove("invalid-placement");
         item.classList.add("ship");
       });
     });
@@ -93,14 +93,21 @@ const renderGame = (function () {
       });
       freshCoords = coords;
     } else {
+      let [x, y] = coords[0];
+      document
+        .querySelector(`.placing-board > [data-coord="${[x, y].join("")}"]`)
+        .classList.add("invalid-hover");
       freshCoords = [];
     }
   };
 
-  const handleMouseOut = function () {
+  const handleMouseOut = function (e) {
     document
       .querySelectorAll(".hover")
       .forEach((item) => item.classList.remove("hover"));
+    document
+      .querySelectorAll(".invalid-hover")
+      .forEach((item) => item.classList.remove("invalid-hover"));
   };
 
   const handleClick = function (p1, type, index) {
