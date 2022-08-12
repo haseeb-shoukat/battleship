@@ -16,7 +16,7 @@ const renderGame = (function () {
     for (let y = 0; y < 10; y++) {
       const item = document.createElement("div");
       item.classList.add("board-item");
-      item.dataset.coord = [x, y].join("");
+      item.dataset.coord = [y, x].join("");
       boardOne.appendChild(item);
       boardTwo.appendChild(item.cloneNode());
     }
@@ -135,6 +135,13 @@ const renderGame = (function () {
     let num;
     if (player.id === "player") {
       num = "one";
+      player.myBoard.ships.forEach((ship) => {
+        ship.coords.forEach((coord) => {
+          document
+            .querySelector(`.board-${num} > [data-coord="${coord.join("")}"]`)
+            .classList.add("ship");
+        });
+      });
     } else {
       num = "two";
     }
