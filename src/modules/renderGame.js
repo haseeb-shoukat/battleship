@@ -7,7 +7,7 @@ const renderGame = (function () {
   const rotateBtn = document.querySelector(".rotate-btn");
   let freshCoords = [];
 
-  let axis = "y";
+  let axis = "x";
   rotateBtn.addEventListener("click", (e) => {
     axis === "y" ? (axis = "x") : (axis = "y");
   });
@@ -28,7 +28,7 @@ const renderGame = (function () {
       for (let y = 0; y < 10; y++) {
         const item = document.createElement("div");
         item.classList.add("board-item", "cant-place");
-        item.dataset.coord = [x, y].join("");
+        item.dataset.coord = [y, x].join("");
         placingBoard.appendChild(item);
       }
     }
@@ -76,7 +76,7 @@ const renderGame = (function () {
   const handleMouseOver = function (item, type, p1) {
     const [x, y] = item.dataset.coord.split("").map(Number);
     let coords = [];
-    if (axis === "x") {
+    if (axis === "y") {
       for (let i = x; i < x + type.len; i++) {
         coords.push([i, y]);
       }
@@ -108,7 +108,7 @@ const renderGame = (function () {
 
     p1.myBoard.placeShip({
       coords: freshCoords,
-      axis: type.axis,
+      axis,
     });
 
     if (type.type === "Patrol Boat") {
