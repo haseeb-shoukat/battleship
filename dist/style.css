@@ -87,7 +87,7 @@ body {
     background-color: rgba(0, 0, 0, 0.621);
 }
 
-.card {
+.card, .end-card {
     height: 35rem;
     width: 30rem;
     border: 1px solid black;
@@ -100,12 +100,17 @@ body {
     background-color: #e2e8f0;
 }
 
+.end-card {
+    height: 12rem;
+    width: 30rem;
+}
+
 .card-heading {
     font-size: 2rem;
     font-weight: 500;
 }
 
-.rotate-btn {
+.rotate-btn, .restart-btn {
     font-size: 1.4rem;
     cursor: pointer;
     background-color: #1e293b;
@@ -116,7 +121,11 @@ body {
     padding: 5px 10px;
 }
 
-.rotate-btn:hover {
+.restart-btn {
+    font-size: 1.5rem;
+}
+
+.rotate-btn:hover, .restart-btn:hover {
     background-color: #334155;
 }
 
