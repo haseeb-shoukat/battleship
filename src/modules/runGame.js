@@ -2,10 +2,12 @@ import { Player } from "./Player";
 import { renderGame } from "./renderGame";
 
 const runGame = (function () {
-  const player = new Player();
-  const computer = new Player("comp");
+  let player;
+  let computer;
 
   const initialize = function () {
+    player = new Player();
+    computer = new Player("comp");
     player.setEnemy(computer);
     computer.setEnemy(player);
     player.setCurrent(true);
@@ -39,10 +41,23 @@ const runGame = (function () {
     } else {
       computer.compAttack();
     }
-    gameLoop();
+    let winner = endGame();
+    if (winner) {
+      renderGame.endGame(winner);
+    } else {
+      gameLoop();
+    }
   };
 
-  const endGame = function () {};
+  const endGame = function () {
+    let winner;
+    if (player.myBoard.allSunk()) {
+      winner = "Computer Wins! Better luck next time.";
+    } else if (computer.myBoard.allSunk()) {
+      winner = "Congratulations! You win.";
+    } else winner = false;
+    return winner;
+  };
 
   return {
     initialize,
